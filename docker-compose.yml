@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   web:
     build:
@@ -6,17 +5,17 @@ services:
       dockerfile: Dockerfile
       args:
         # Optional build-time public envs (inlined by Next.js)
-        NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+        NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:-}
         NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
         NEXT_PUBLIC_APP_NAME: ${NEXT_PUBLIC_APP_NAME:-Farmeasy}
     environment:
       # Runtime private keys (server-side only)
       NODE_ENV: production
-      GOOGLE_GENERATIVE_AI_API_KEY: ${GOOGLE_GENERATIVE_AI_API_KEY}
-      SARVAM_API_KEY: ${SARVAM_API_KEY}
-      MANDI_PRICE_API_KEY: ${MANDI_PRICE_API_KEY}
+      GOOGLE_GENERATIVE_AI_API_KEY: ${GOOGLE_GENERATIVE_AI_API_KEY:-}
+      SARVAM_API_KEY: ${SARVAM_API_KEY:-}
+      MANDI_PRICE_API_KEY: ${MANDI_PRICE_API_KEY:-}
       # Optional runtime envs
-      NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+      NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:-}
       NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
       NEXT_PUBLIC_APP_NAME: ${NEXT_PUBLIC_APP_NAME:-Farmeasy}
     env_file:

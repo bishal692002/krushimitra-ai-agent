@@ -30,18 +30,13 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-# Use a non-root user
-RUN addgroup -g 1001 nodejs \
-  && adduser -S -u 1001 node
+# Use the pre-existing non-root 'node' user provided by the base image
 
 # Copy only what we need to run
 COPY --from=builder /app/package.json ./package.json
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
-
-# Remove devDependencies from runtime image
-RUN npm prune --omit=dev
 
 EXPOSE 3000
 USER node
